@@ -774,14 +774,3 @@ Single Product Page
 		grid-template-columns: 1fr 1fr;
 	}
 }
-
-.div {
-	width: 100px;
-	height: 100px;
-	background-color: red;
-	transition: all 1s;
-}
-
-.rotate {
-	transform: rotate(30deg);
-}
