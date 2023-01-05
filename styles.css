@@ -730,7 +730,7 @@ Single Product Page
 	background: var(--clr-grey-10);
 	color: var(--clr-grey-5);
 }
-.page-hero-title {
+.page-hero__title {
 	font-weight: 500;
 }
 .single-product {
