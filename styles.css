@@ -736,24 +736,24 @@ Single Product Page
 .single-product {
 	padding: 2rem 0;
 }
-.single-product-center {
+.single-product__center {
 	margin: 2rem auto;
 	display: grid;
 	gap: 1rem 2rem;
 }
-.single-product-img {
+.single-product__img {
 	height: 25rem;
 	border-radius: var(--radius);
 	object-fit: cover;
 }
-.single-product-company {
+.single-product__company {
 	font-size: 1.2rem;
 	color: var(--clr-grey-8);
 	text-transform: uppercase;
 	letter-spacing: var(--spacing);
 	margin-bottom: 1.25rem;
 }
-.single-product-price {
+.single-product__price {
 	color: var(--clr-grey-3);
 	font-size: 1.25rem;
 	font-weight: 500;
@@ -768,12 +768,12 @@ Single Product Page
 	margin: 0.5rem 0.5rem 1.5rem 0;
 }
 
-.single-product-desc {
+.single-product__desc {
 	max-width: 25em;
 	line-height: 1.8;
 }
 @media screen and (min-width: 992px) {
-	.single-product-center {
+	.single-product__center {
 		grid-template-columns: 1fr 1fr;
 	}
 }
