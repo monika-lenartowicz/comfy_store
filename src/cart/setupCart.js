@@ -23,6 +23,10 @@ export const addToCart = id => {
 		console.log(cart);
 	} else {
 		// update values
+		const amount = increaseAmount(id);
+		const items = [...cartItemsDOM.querySelectorAll(".cart-item__amount")];
+		const newAmount = items.find(value => value.dataset.id === id);
+		newAmount.textContent = amount;
 	}
 	// add one to the item item count
 	displayCartItemsCount();
@@ -49,7 +53,55 @@ function displayCartTotal() {
 	cartTotalDOM.textContent = `Total: ${formatPrice(total)}`;
 }
 
+function displayCartItemsDOM() {
+	cart.forEach(cartItem => {
+		addToCartDOM(cartItem);
+	});
+}
+
+function removeItem(id) {
+	cart = cart.filter(cartItem => cartItem.id !== id);
+}
+
+function increaseAmount(id) {
+	let newAmount;
+	cart = cart.map(cartItem => {
+		if (cartItem.id === id) {
+			newAmount = cartItem.amount + 1;
+			cartItem = { ...cartItem, amount: newAmount };
+		}
+		return cartItem;
+	});
+	return newAmount;
+}
+function setupCartFunctionality() {
+	cartItemsDOM.addEventListener("click", function (e) {
+		const element = e.target;
+		const parent = e.target.parentElement;
+		const id = e.target.dataset.id;
+		const parentId = parent.dataset.id;
+		// remove
+		if (element.classList.contains("cart-item__remove-btn")) {
+			removeItem(id);
+			parent.parentElement.remove();
+		}
+		// increase
+		// decrease
+
+		displayCartItemsCount();
+		displayCartTotal();
+		setStorageItem("cart", cart);
+	});
+}
+
 const init = () => {
-	console.log(cart);
+	// display amount of cart items
+	displayCartItemsCount();
+	// display totals
+	displayCartTotal();
+	// add all carts item to the DOM
+	displayCartItemsDOM();
+	// setup cart functionality
+	setupCartFunctionality();
 };
 init();
