@@ -20,7 +20,6 @@ export const addToCart = id => {
 		cart = [...cart, product];
 		// add item to the DOM
 		addToCartDOM(product);
-		console.log(cart);
 	} else {
 		// update values
 		const amount = increaseAmount(id);
@@ -93,7 +92,6 @@ function setupCartFunctionality() {
 		const parent = e.target.parentElement;
 		const id = e.target.dataset.id;
 		const parentId = parent.dataset.id;
-		console.log(parentId);
 
 		// remove
 		if (element.classList.contains("cart-item__remove-btn")) {
