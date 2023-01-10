@@ -74,19 +74,47 @@ function increaseAmount(id) {
 	});
 	return newAmount;
 }
+
+function decreaseAmount(id) {
+	let newAmount;
+	cart = cart.map(cartItem => {
+		if (cartItem.id === id) {
+			newAmount = cartItem.amount - 1;
+			cartItem = { ...cartItem, amount: newAmount };
+		}
+		return cartItem;
+	});
+	return newAmount;
+}
+
 function setupCartFunctionality() {
 	cartItemsDOM.addEventListener("click", function (e) {
 		const element = e.target;
 		const parent = e.target.parentElement;
 		const id = e.target.dataset.id;
 		const parentId = parent.dataset.id;
+		console.log(parentId);
+
 		// remove
 		if (element.classList.contains("cart-item__remove-btn")) {
 			removeItem(id);
-			parent.parentElement.remove();
+			parent.parentElement.parentElement.remove();
 		}
 		// increase
+		if (parent.classList.contains("cart-item__increase-btn")) {
+			const newAmount = increaseAmount(parentId);
+			parent.nextElementSibling.textContent = newAmount;
+		}
 		// decrease
+		if (parent.classList.contains("cart-item__decrease-btn")) {
+			const newAmount = decreaseAmount(parentId);
+			if (newAmount === 0) {
+				removeItem(parentId);
+				parent.parentElement.parentElement.remove();
+			} else {
+				parent.previousElementSibling.textContent = newAmount;
+			}
+		}
 
 		displayCartItemsCount();
 		displayCartTotal();
